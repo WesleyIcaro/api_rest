@@ -17,7 +17,7 @@ export default [
       'no-multiple-empty-lines': ['error', { 'max': 1}],
       'no-trailing-spaces': 'error',
       'no-multi-spaces': 'error',
-      'space-in-parens': ['error', 'never']
-    }
-  }
+      'space-in-parens': ['error', 'never'],
+    },
+  },
 ];
