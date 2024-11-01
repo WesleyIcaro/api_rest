@@ -16,5 +16,8 @@
     "globals": "^15.11.0",
     "nodemon": "^3.1.7",
     "sucrase": "^3.35.0"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
   }
 }

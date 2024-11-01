@@ -1,10 +1,18 @@
+import express from 'express';
 
-const teste = 22;
+class App {
+  constructor() {
+    this.app = express();
+    this.middllewares();
+    this.routes();
+  }
 
-console.log (teste) ;
+  middllewares() {
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.json());
+  }
 
-function oie () {
+  routes() {
 
+  }
 }
-
-console.log(oie());

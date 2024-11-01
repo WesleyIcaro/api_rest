@@ -6,7 +6,7 @@ export default [
   pluginJs.configs.recommended,
   {
     rules: {
-      eqeqeq: 'off',
+      'eqeqeq': 'off',
       'no-unused-vars': 'error',
       'prefer-const': ['error', { 'ignoreReadBeforeAssign': true }],
       'semi': ['error', 'always'],
@@ -18,6 +18,16 @@ export default [
       'no-trailing-spaces': 'error',
       'no-multi-spaces': 'error',
       'space-in-parens': ['error', 'never'],
+      'keyword-spacing': ['error', { 'before': true, 'after': true }],
+      'no-unused-expressions': 'error',
+      'space-before-function-paren': ['error', 'never'],
+      'block-spacing': 'error',
+      'no-empty-function': 'error',
+      'no-empty': 'error',
+      'no-alert': 'warn',
+      'no-var': 'error',
+      'no-duplicate-imports': ['error', { 'includeExports': true }],
+      'camelcase': 'error',
     },
   },
 ];
