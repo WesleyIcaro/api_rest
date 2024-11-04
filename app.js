@@ -1,4 +1,5 @@
 import express from 'express';
+import home from './src/routes/home';
 
 class App {
   constructor() {
@@ -13,6 +14,8 @@ class App {
   }
 
   routes() {
-
+    this.app.use('/', home);
   }
 }
+
+export default new App().app;
