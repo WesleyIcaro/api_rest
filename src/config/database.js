@@ -9,9 +9,14 @@ module.exports = {
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE,
   define: {
-
+    timestamps: true,
+    underscored: true,
+    underscoredAll: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   },
   dialetOptions: {
     timezone: 'America/Sao_Paulo'
   },
+  timezone: 'America/Sao_Paulo'
 };
