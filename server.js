@@ -1,8 +1,13 @@
 import app from './app';
+import dotenv from 'dotenv';
 
-const port = 3001;
-app.listen(port, () => {
+dotenv.config();
+
+// eslint-disable-next-line no-undef
+app.listen(process.env.APP_PORT, () => {
   console.log();
-  console.log(`Escutando na porta ${port}`);
-  console.log(`CTRL + clique em http://localhost:${port}`);
+  // eslint-disable-next-line no-undef
+  console.log(`Escutando na porta ${process.env.APP_PORT}`);
+  // eslint-disable-next-line no-undef
+  console.log(`CTRL + clique em http://localhost:${process.env.APP_PORT}`);
 });

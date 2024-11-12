@@ -1,6 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 import bcryptjs from 'bcryptjs';
 
+// O modelo user é trocado para users automaticamente, por isso não preciso preocupar do nome aqui está no singular e a tabela estar no plural
 export default class User extends Model {
   static init(sequelize) {
     super.init({
@@ -17,10 +18,12 @@ export default class User extends Model {
       email: {
         type: Sequelize.STRING,
         defaultValue: '',
+        unique: {
+          msg: 'Email já existe',
+        },
         validate: {
-          len: {
-            args: [3, 255],
-            msg: 'Campo nome deve ter entre 3 e 255 caracteres',
+          isEmail: {
+            msg: 'Email invalido',
           }
         }
       },
@@ -44,8 +47,10 @@ export default class User extends Model {
     });
 
     this.addHook('beforeSave', async user => {
-      // eslint-disable-next-line camelcase
-      user.password_hash = await bcryptjs.hash(user.password, 8);
+      if (user.password) {
+        // eslint-disable-next-line camelcase
+        user.password_hash = await bcryptjs.hash(user.password, 8);
+      }
     });
 
     return this;
