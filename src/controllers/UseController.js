@@ -4,7 +4,10 @@ class UseController {
   async store(req, res) {
     try {
       const novoUser = await User.create(req.body);
-      return res.json(novoUser);
+
+      const { id, nome, email } = novoUser;
+
+      return res.json({id, nome, email});
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err => err.message))
@@ -16,7 +19,7 @@ class UseController {
     try {
       console.log('USER ID', req.userId);
       console.log('USER EMAIL', req.userEmail);
-      const users = await User.findAll({ attributes: [ 'id', 'nome', 'email' ] });
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email'] });
 
       return res.json(users);
     } catch (e) {
@@ -58,7 +61,10 @@ class UseController {
       }
 
       const userUpdate = await user.update(req.body);
-      return res.json(userUpdate);
+
+      const { id, nome, email } = userUpdate;
+
+      return res.json({ id, nome, email });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err => err.message))
@@ -68,13 +74,7 @@ class UseController {
 
   async delete(req, res) {
     try {
-      if (!req.params.id) {
-        return res.status(400).json({
-          errors: ['Faltando ID']
-        });
-      }
-
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
 
       if (!user) {
         return res.status(400).json({
@@ -83,7 +83,7 @@ class UseController {
       }
 
       await user.destroy();
-      return res.json(user);
+      return res.json(null);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err => err.message))
