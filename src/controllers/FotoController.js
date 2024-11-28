@@ -1,6 +1,7 @@
 class FotoController {
   async store(req, res) {
-    res.json('Index');
+    // file para arquivo único e files para arquivos múltiplos
+    res.json(req.file);
   }
 }
 
