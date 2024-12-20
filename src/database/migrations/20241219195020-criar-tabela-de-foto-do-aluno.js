@@ -22,7 +22,13 @@ module.exports = {
       // eslint-disable-next-line camelcase
       aluno_id: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references:{
+          model: 'alunos',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       // eslint-disable-next-line camelcase
       created_at: {

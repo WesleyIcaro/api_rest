@@ -1,9 +1,18 @@
 import Aluno from '../models/Aluno';
+import Foto from '../models/Foto';
 
 class AlunoController {
   async index(req, res) {
     try {
-      const alunos = await Aluno.findAll();
+      const alunos = await Aluno.findAll({
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
+        order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+        include: {
+          model: Foto,
+          attributes: ['filename']
+        },
+      });
+
       res.json(alunos);
     } catch (e) {
       return res.status(400).json({
@@ -24,7 +33,7 @@ class AlunoController {
     }
   }
 
-  async update(req,res) {
+  async update(req, res) {
     try {
 
       if (!req.params.id) {
@@ -53,7 +62,7 @@ class AlunoController {
     }
   }
 
-  async show(req,res) {
+  async show(req, res) {
     try {
       const { id } = req.params;
 
@@ -63,7 +72,15 @@ class AlunoController {
         });
       }
 
-      const aluno = await Aluno.findByPk(id);
+      const aluno = await Aluno.findByPk(id, {
+
+        attributes: ['id', 'nome', 'sobrenome', 'email', 'idade', 'peso', 'altura'],
+        order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+        include: {
+          model: Foto,
+          attributes: ['filename']
+        },
+      });
 
       if (!aluno) {
         return res.status(400).json({
@@ -79,7 +96,7 @@ class AlunoController {
     }
   }
 
-  async delete(req,res) {
+  async delete(req, res) {
     try {
       const { id } = req.params;
 
