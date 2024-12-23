@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { resolve } from 'path';
 
 dotenv.config();
 
@@ -21,6 +22,8 @@ class App {
   middllewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    // eslint-disable-next-line no-undef
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
   }
 
   routes() {
